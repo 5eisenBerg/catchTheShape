@@ -1,0 +1,109 @@
+/* Global styles */
+body, html, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Game container */
+.game-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2vh;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Headings and paragraphs with optimized clamp */
+h1 { font-size: clamp(2rem, 4vw, 3rem); color: #ff4d6d; margin-bottom: 1vh; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); color: #4da6ff; margin: 0.5vh 0 2vh 0; }
+p { font-size: clamp(1rem, 2vw, 1.5rem); margin: 0.5vh 0 1vh 0; }
+
+/* Game area */
+.game-area {
+  position: relative;
+  width: 90%;
+  height: 70vh;
+  max-width: 1200px;
+  border: 0.3vw solid #ff4d6d;
+  border-radius: 1.5vw;
+  overflow: hidden;
+  background-color: #222;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+/* Shapes */
+.shape {
+  position: absolute;
+  width: clamp(30px, 3.5vw, 50px);
+  height: clamp(30px, 3.5vw, 50px);
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shape:hover {
+  transform: scale(1.3) rotate(15deg);
+  z-index: 999;
+}
+
+/* Circle */
+.shape.circle { border-radius: 50%; }
+
+/* Triangle */
+.shape.triangle {
+  width: 0;
+  height: 0;
+  border-left: clamp(15px, 1.75vw, 25px) solid transparent;
+  border-right: clamp(15px, 1.75vw, 25px) solid transparent;
+  border-bottom: clamp(30px, 3.5vw, 50px) solid #4da6ff;
+}
+
+/* Bomb and Star items */
+.shape.bomb, .shape.golden {
+  background: none;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: clamp(5px, 1vw, 10px);
+  height: clamp(5px, 1vw, 10px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Level-up animation */
+/* Level-up animation - fixed for mobile */
+.level-up {
+  position: fixed;       /* changed from absolute to fixed */
+  top: 30%;              /* relative to viewport */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  color: #ffd700;
+  text-shadow: 0 0 clamp(5px, 1vw, 10px) #fff,
+               0 0 clamp(10px, 2vw, 20px) #ffd700,
+               0 0 clamp(15px, 3vw, 30px) #ff8c00;
+  animation: pop 0.5s ease-in-out;
+  z-index: 9999;        /* always on top */
+}
+
+
+@keyframes pop {
+  0% { transform: translateX(-50%) scale(0.5); opacity: 0; }
+  50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
